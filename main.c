@@ -1,5 +1,9 @@
 #include "monty.h"
-
+/**
+ * is_line_empty - check if the line is empty
+ * @line: the line
+ * Return: 1 if empty or 0 if not
+ */
 int is_line_empty(char *line)
 {
     size_t i = 0;
