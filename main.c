@@ -35,7 +35,7 @@ void (*get_opcode_func(char *opcode, unsigned int line_num, FILE *file_ptr))(sta
     {"nod", nod},
     */
 };
-    while (i < 1)
+    while (i < 2)
     {
         if (strcmp(opcode, (opcodes + i)->opcode) == 0)
         {
@@ -43,7 +43,7 @@ void (*get_opcode_func(char *opcode, unsigned int line_num, FILE *file_ptr))(sta
         }
         i++;
     }
-    if (i == 1)
+    if (i == 2)
     {
     fprintf(stderr, "L%d: unknown instruction %s\n", line_num, opcode);
     fclose(file_ptr);
