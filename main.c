@@ -6,13 +6,12 @@
  */
 void free_dll(stack_t **stack)
 {
-    stack_t *ptr = *stack;
     stack_t *temp;
-    while (ptr != NULL)
+    while ((*stack) != NULL)
     {
-        temp = ptr->next;
-        free(ptr);
-        ptr = temp;
+        temp = (*stack)->next;
+        free(*stack);
+        *stack = temp;
     }
 }
 
@@ -40,7 +39,7 @@ int is_line_empty(char *line)
  * @line_num: the line number
  * Return: the proper function or NULL if failed
  */
-void (*get_opcode_func(char *opcode, unsigned int line_num, FILE *file_ptr))(stack_t**, unsigned int)
+void (*get_opcode_func(char *opcode, unsigned int line_num, FILE *file_ptr, stack_t **stack))(stack_t**, unsigned int)
 {
     int i = 0;
     instruction_t opcodes[] = {
@@ -63,6 +62,7 @@ void (*get_opcode_func(char *opcode, unsigned int line_num, FILE *file_ptr))(sta
     if (i == 2)/*increment this number when ading a new opcode func*/
     {
     fprintf(stderr, "L%d: unknown instruction %s\n", line_num, opcode);
+    free_dll(stack);
     fclose(file_ptr);
     exit(EXIT_FAILURE);
     }
@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
     push(&stack, strtok(NULL, "$ \t"), line_num, file_ptr);
     else
     {
-    f_ptr = get_opcode_func(opcode, line_num, file_ptr);
+    f_ptr = get_opcode_func(opcode, line_num, file_ptr, &stack);
     f_ptr(&stack, line_num);
     }
     }
