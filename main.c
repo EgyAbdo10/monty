@@ -30,7 +30,7 @@ void (*get_opcode_func(char *opcode, unsigned int line_num))(stack_t**, unsigned
     {"nod", nod},
     */
 };
-    while (i < 5)
+    while (i < 1)
     {
         if (strcmp(opcode, (opcodes + i)->opcode) == 0)
         {
@@ -38,9 +38,9 @@ void (*get_opcode_func(char *opcode, unsigned int line_num))(stack_t**, unsigned
         }
         i++;
     }
-    if (i == 5)
+    if (i == 1)
     {
-    fprintf(stderr, "L%d: unknown instruction %s", line_num, opcode);
+    fprintf(stderr, "L%d: unknown instruction %s\n", line_num, opcode);
     exit(EXIT_FAILURE);
     }
     return (NULL);
