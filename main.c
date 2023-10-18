@@ -1,4 +1,18 @@
 #include "monty.h"
+
+int is_line_empty(char *line)
+{
+    size_t i = 0;
+    if (line[0] == '$')
+    return (1);
+    for (; i < strlen(line) - 2; i++)
+    {
+        if (line[i] != ' ' && line[i] != '\t')
+        return (0);
+    }
+    return (1);
+}
+
 /**
  * get_opcode_func - get the proper opcode function
  * @opcode: the opcode from tyhe monty file
@@ -62,6 +76,8 @@ int main(int argc, char *argv[])
     {
     line_num++;
     line = buffer;
+    if (is_line_empty(line) == 0)
+    {
     opcode = strtok(line, "$ \t");
     if (strcmp(opcode, "push") == 0)
     push(&stack, strtok(NULL, "$ \t"), line_num);
@@ -69,6 +85,7 @@ int main(int argc, char *argv[])
     {
     f_ptr = get_opcode_func(opcode, line_num);
     f_ptr(&stack, line_num);
+    }
     }
     }
     return (0);
