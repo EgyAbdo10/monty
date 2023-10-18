@@ -1,4 +1,21 @@
 #include "monty.h"
+
+/**
+ * free_dll - free a doubly linked list
+ * @stack: the stack to free
+ */
+void free_dll(stack_t **stack)
+{
+    stack_t *ptr = *stack;
+    stack_t *temp;
+    while (ptr != NULL)
+    {
+        temp = ptr->next;
+        free(ptr);
+        ptr = temp;
+    }
+}
+
 /**
  * is_line_empty - check if the line is empty
  * @line: the line
@@ -35,7 +52,7 @@ void (*get_opcode_func(char *opcode, unsigned int line_num, FILE *file_ptr))(sta
     {"nod", nod},
     */
 };
-    while (i < 2)
+    while (i < 2)/*increment this number when ading a new opcode func*/
     {
         if (strcmp(opcode, (opcodes + i)->opcode) == 0)
         {
@@ -43,7 +60,7 @@ void (*get_opcode_func(char *opcode, unsigned int line_num, FILE *file_ptr))(sta
         }
         i++;
     }
-    if (i == 2)
+    if (i == 2)/*increment this number when ading a new opcode func*/
     {
     fprintf(stderr, "L%d: unknown instruction %s\n", line_num, opcode);
     fclose(file_ptr);
@@ -95,5 +112,6 @@ int main(int argc, char *argv[])
     }
     }
     fclose(file_ptr);
+    free_dll(&stack);
     return (0);
 }

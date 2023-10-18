@@ -32,12 +32,14 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+void free_dll(stack_t **stack);
 int is_line_empty(char *line);
 void (*get_opcode_func(char *opcode, unsigned int line_num, FILE *file_ptr))(stack_t**, unsigned int);
 void push(stack_t **stack, char *raw_data, unsigned int line_number, FILE *file_ptr);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 /*
+void pint(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void nod(stack_t **stack, unsigned int line_number);

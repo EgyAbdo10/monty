@@ -19,6 +19,7 @@ void push(stack_t **stack, char *raw_data, unsigned int line_number, FILE *file_
     if (ptr == NULL)
     {
         fprintf(stderr, "Error: malloc failed\n");
+        free_dll(stack);
         exit(EXIT_FAILURE);
     }
     ptr->n = n;
