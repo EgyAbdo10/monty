@@ -7,7 +7,7 @@
  * Return: no return
 */
 
-void f_pint(stack_t **stack, unsigned int line_number)
+void pint(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)
 	{

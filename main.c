@@ -27,8 +27,9 @@ void (*get_opcode_func(char *opcode, unsigned int line_num, FILE *file_ptr))(sta
 {
     int i = 0;
     instruction_t opcodes[] = {
-    {"pall", pall}/*,
+    {"pall", pall},
     {"pint", pint},
+    /*
     {"swap", swap},
     {"add", add},
     {"nod", nod},
