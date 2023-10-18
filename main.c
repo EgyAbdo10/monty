@@ -1,5 +1,10 @@
 #include "monty.h"
-
+/**
+ * get_opcode_func - get the proper opcode function
+ * @opcode: the opcode from tyhe monty file
+ * @line_num: the line number
+ * Return: the proper function or NULL if failed
+ */
 void (*get_opcode_func(char *opcode, unsigned int line_num))(stack_t**, unsigned int)
 {
     int i = 0;
@@ -28,7 +33,12 @@ void (*get_opcode_func(char *opcode, unsigned int line_num))(stack_t**, unsigned
 }
 
 
-
+/**
+ * main - implement instructions in the monty file
+ * @argc: the the number of arguments
+ * @argv: the argument vector
+ * Return: (0) on success
+*/
 int main(int argc, char *argv[])
 {
     unsigned int line_num = 0;
