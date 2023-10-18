@@ -5,13 +5,14 @@
  * @raw_data: the number to push (as a string)
  * @line_number: teh line number we are currently in
  */
-void push(stack_t **stack, char *raw_data, unsigned int line_number)
+void push(stack_t **stack, char *raw_data, unsigned int line_number, FILE *file_ptr)
 {
     int n = atoi(raw_data);
     stack_t *ptr;
     if (n == 0 && raw_data[0] != '0')
     {
         fprintf(stderr, "L%d: usage: push integer\n", line_number);
+        fclose(file_ptr);
         exit(EXIT_FAILURE);
     }
     ptr = malloc(sizeof(stack_t));

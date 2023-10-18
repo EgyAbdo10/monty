@@ -23,7 +23,7 @@ int is_line_empty(char *line)
  * @line_num: the line number
  * Return: the proper function or NULL if failed
  */
-void (*get_opcode_func(char *opcode, unsigned int line_num))(stack_t**, unsigned int)
+void (*get_opcode_func(char *opcode, unsigned int line_num, FILE *file_ptr))(stack_t**, unsigned int)
 {
     int i = 0;
     instruction_t opcodes[] = {
@@ -45,6 +45,7 @@ void (*get_opcode_func(char *opcode, unsigned int line_num))(stack_t**, unsigned
     if (i == 1)
     {
     fprintf(stderr, "L%d: unknown instruction %s\n", line_num, opcode);
+    fclose(file_ptr);
     exit(EXIT_FAILURE);
     }
     return (NULL);
@@ -84,13 +85,14 @@ int main(int argc, char *argv[])
     {
     opcode = strtok(line, "$ \t");
     if (strcmp(opcode, "push") == 0)
-    push(&stack, strtok(NULL, "$ \t"), line_num);
+    push(&stack, strtok(NULL, "$ \t"), line_num, file_ptr);
     else
     {
-    f_ptr = get_opcode_func(opcode, line_num);
+    f_ptr = get_opcode_func(opcode, line_num, file_ptr);
     f_ptr(&stack, line_num);
     }
     }
     }
+    fclose(file_ptr);
     return (0);
 }
