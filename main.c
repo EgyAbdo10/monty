@@ -48,7 +48,7 @@ void (*get_opcode_func(char *opcode, unsigned int line_num, FILE *file_ptr, stac
     {"pop", pop},
     {"swap", swap},
     {"add", add},
-    {"nod", nop},
+    {"nop", nop},
 };
     while (i < 6)/*increment this number when ading a new opcode func*/
     {
