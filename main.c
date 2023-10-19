@@ -49,9 +49,10 @@ void (*get_opcode_func(char *opcode, unsigned int line_num, FILE *file_ptr, stac
     {"swap", swap},
     {"add", add},
     {"nop", nop},
-    {"sub", sub}
+    {"sub", sub},
+    {"div", my_div}
 };
-    while (i < 7)/*increment this number when ading a new opcode func*/
+    while (i < 8)/*increment this number when ading a new opcode func*/
     {
         if (strcmp(opcode, (opcodes + i)->opcode) == 0)
         {
@@ -59,7 +60,7 @@ void (*get_opcode_func(char *opcode, unsigned int line_num, FILE *file_ptr, stac
         }
         i++;
     }
-    if (i == 7)/*increment this number when ading a new opcode func*/
+    if (i == 8)/*increment this number when ading a new opcode func*/
     {
     fprintf(stderr, "L%d: unknown instruction %s\n", line_num, opcode);
     free_dll(stack);

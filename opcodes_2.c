@@ -43,3 +43,27 @@ void sub(stack_t **stack, unsigned int line_number)
     (*stack)->next->n -= (*stack)->n;
     pop(stack, line_number);
 }
+
+void my_div(stack_t **stack, unsigned int line_number)
+{
+    int i = 0;
+    stack_t *ptr = *stack;
+    while (i < 2 && ptr != NULL)
+    {
+        i++;
+        ptr = ptr->next;
+    }
+    if (i != 2)
+    {
+        fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
+        free_dll(stack);
+        exit(EXIT_FAILURE);
+    }
+    if ((*stack)->n == 0)
+    {
+        fprintf(stderr, "L%u: division by zero\n", line_number);
+        exit(EXIT_FAILURE);
+    }
+    (*stack)->next->n /= (*stack)->n;
+    pop(stack, line_number);
+}
