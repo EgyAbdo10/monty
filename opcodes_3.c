@@ -41,3 +41,26 @@ void pchar(stack_t **stack, unsigned int line_number)
     }
     printf("%c\n", (*stack)->n);
 }
+
+void rotl(stack_t **stack, unsigned int line_number)
+{
+    stack_t *ptr;
+    stack_t *last;
+    (void)line_number;
+    if ((*stack) == NULL)
+    return;
+    ptr = (*stack)->next;
+    last = (*stack);
+    while (last->next != NULL)
+    {
+        last = last->next;
+    }
+    if ((*stack)->next != NULL)
+    {
+    (*stack)->prev = last;
+    (*stack)->next = NULL;
+    last->next = *stack;
+    ptr->prev = NULL;
+    (*stack) = ptr;
+    }
+}
