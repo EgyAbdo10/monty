@@ -42,7 +42,11 @@ void pall(stack_t **stack, unsigned int line_number)
         ptr = ptr->next;
     }
 }
-
+/**
+ * pop - remove the top element
+ * @stack: the stack address
+ * @line_number: the line number of the current instruction
+ */
 void pop(stack_t **stack, unsigned int line_number)
 {
     stack_t *ptr = *stack;
@@ -53,4 +57,33 @@ void pop(stack_t **stack, unsigned int line_number)
     }
     *stack = ptr->next;
     free(ptr);
+}
+/**
+ * swap - swap the top two elements
+ * @stack: the stack address
+ * @line_number: the line number of the current instruction
+ */
+void swap(stack_t **stack, unsigned int line_number)
+{
+    int i = 0;
+    stack_t *ptr = *stack;
+    while (i < 2 && ptr != NULL)
+    {
+        i++;
+        ptr = ptr->next;
+    }
+    if (i != 2)
+    {
+        fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+        free_dll(stack);
+        exit(EXIT_FAILURE);
+    }
+    ptr = (*stack)->next;
+    (*stack)->next = ptr->next;
+    (*stack)->prev = ptr;
+    ptr->next = (*stack);
+    ptr->prev = NULL;
+    if ((*stack)->next != NULL)
+    (*stack)->next->prev = (*stack);
+    *stack = ptr;
 }
