@@ -23,7 +23,7 @@ void free_dll(stack_t **stack)
 int is_line_empty(char *line)
 {
     size_t i = 0;
-    if (line[0] == '$')
+    if (line[0] == '$' || line[0] == '#')
     return (1);
     for (; i < strlen(line) - 2; i++)
     {
