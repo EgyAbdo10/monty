@@ -42,3 +42,15 @@ void pall(stack_t **stack, unsigned int line_number)
         ptr = ptr->next;
     }
 }
+
+void pop(stack_t **stack, unsigned int line_number)
+{
+    stack_t *ptr = *stack;
+    if (ptr == NULL)
+    {
+        fprintf(stderr, "L%u: can't pop an empty stack", line_number);
+        exit(EXIT_FAILURE);
+    }
+    *stack = ptr->next;
+    free(ptr);
+}
