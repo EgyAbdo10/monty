@@ -70,5 +70,6 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 
 } instruction_t;
+
 # Copyright - Plagiarism
 Any form of plagiarism is strictly forbidden and will result in removal from the program.
