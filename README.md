@@ -11,3 +11,6 @@ The goal of this project is to create an interpreter for Monty ByteCodes files.
 7. No more than 5 functions per file
 8. The prototypes of all functions should be included in header file called monty.h
 9. All header files should be include guarded
+# More Info
+## Data structures
+The following data structures should be used for this project and included in the header file.
